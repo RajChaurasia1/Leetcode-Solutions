@@ -28,16 +28,34 @@ public:
         for(int i = 1 ; i < n ; i++){
             int inc = a[i].profit;
             int lid = -1;
-            for(int j = i - 1 ; j >= 0 ; j--){
-                if(a[j].end <= a[i].start){
-                    lid = j;
-                    break;
+            int low = 0;
+            int high = i - 1;
+           
+            while(low <= high){
+                int mid = low + ((high - low) >> 1);
+                if(a[mid].end <= a[i].start)
+                {
+                    lid = mid;
+                    low = mid + 1;
                 }
+                else
+                    high = mid - 1;
             }
-            if(lid!=-1){
-                inc+=dp[lid];
-            }
-            dp[i] = max(inc,dp[i-1]);
+            if(lid!=-1)
+                inc += dp[lid];
+          
+            dp[i] = max(inc,dp[i - 1]);
+            // for(int j = i - 1 ; j >= 0 ; j--){
+            //     if(a[j].end <= a[i].start){
+            //         lid = j;
+            //         break;
+            //     }
+            // }
+            // if(lid!=-1){
+            //     inc+=dp[lid];
+            // }
+            // dp[i] = max(inc,dp[i-1]);
+            
             
             
         }
