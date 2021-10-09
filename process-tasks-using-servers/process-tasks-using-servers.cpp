@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> assignTasks(vector<int>& servers, vector<int>& tasks) {
+        
+        priority_queue<pair<long int,long int>, vector<pair<long int,long int>>, greater<pair<long int,long int>>> busy, avl;
+        
+        vector<int> ans;
+        
+        long int timer = 0;
+        
+        for(int i = 0; i < servers.size(); i++)
+            avl.push({servers[i],i});   
+        
+        for(long int i = 0; i < tasks.size(); i++){
+            if(avl.empty())
+                timer = busy.top().first;            
+            while(!busy.empty() && busy.top().first <= timer){
+                int j = busy.top().second;
+                avl.push({servers[j],j});
+                busy.pop();
+            }           
+            
+            int k = avl.top().second;
+            avl.pop();
+            ans.push_back(k);
+            busy.push({timer + tasks[i],k});
+            timer = max(timer,i + 1);
+        }
+        return ans;        
+
+    }
+};
