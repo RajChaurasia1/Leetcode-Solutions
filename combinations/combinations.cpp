@@ -22,11 +22,11 @@ public:
     
     vector<vector<int>> combine(int n, int k) {
         
-        for(int i = 1 ; i <= n ; i++){
+       // for(int i = 1 ; i <= n ; i++){
             vector<int>v;
-            v.push_back(i);
-            recurse(i + 1,k - 1,n,v);
-        }
+          //  v.push_back(1);
+            recurse(1,k,n,v);
+        //}
         return ans;
         
     }
