@@ -4,9 +4,9 @@ public:
     int dp[2001][2001];
     bool end(vector<int>&stones, int i, int k){
   
-        // if(stones[n - 1] == stones[i] + k)
-        //     return true;
-        if(i==n-1) return true;
+        if(stones[n - 1] == stones[i] + k)
+            return true;
+        if(i == n-1) return true;
         if(k == 0)
             return false;
         if(dp[i][k]!=-1)
