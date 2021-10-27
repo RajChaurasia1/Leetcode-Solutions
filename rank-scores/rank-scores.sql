@@ -1,0 +1,3 @@
+# Write your MySQL query statement below
+
+SELECT SCORE AS "SCORE",DENSE_RANK() OVER(ORDER BY SCORE DESC) AS "RANK" FROM SCORES;
